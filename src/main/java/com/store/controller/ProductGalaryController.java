@@ -37,12 +37,6 @@ public class ProductGalaryController {
 	@Autowired
 	private ProductService ps;
 	
-
-	@Autowired
-	private ProductGalaryService galaryService;
-
-	
-	
 	@PostMapping("/upload")
 	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file ,@RequestParam int productId) {
 		String message = "";
@@ -64,7 +58,7 @@ public class ProductGalaryController {
 			galary.setProduct(product);
 			galary.setUrl(url);
 			
-			galaryService.saveProductImg(galary);
+			storageService.saveProductImg(galary);
 			
 			
 			
@@ -75,6 +69,10 @@ public class ProductGalaryController {
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
 		}
 	}
+	
+	
+
+	/*
 
 	@GetMapping("/files")
 	public ResponseEntity<List<ProductGalary>> getListFiles() {
@@ -90,6 +88,7 @@ public class ProductGalaryController {
 
 	}
 	
+	*/
 	@GetMapping("/files/{filename:.+}")
 	  @ResponseBody
 	  public ResponseEntity<Resource> getFile(@PathVariable String filename) {

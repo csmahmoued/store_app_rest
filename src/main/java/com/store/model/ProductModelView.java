@@ -1,13 +1,28 @@
 package com.store.model;
 
-public class ProductCategoryModel {
+import java.util.List;
+
+public class ProductModelView {
 
 	private int catgId;
 	private int productId;
 	private String productName;
 	private float productPrice;
 	private float productSellPrice;
+	private List<String> imgs;
 	
+	
+	
+	
+	
+	
+
+	public List<String> getImgs() {
+		return imgs;
+	}
+	public void setImgs(List<String> imgs) {
+		this.imgs = imgs;
+	}
 	public int getCatgId() {
 		return catgId;
 	}

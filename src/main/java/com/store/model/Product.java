@@ -33,7 +33,6 @@ public class Product {
 	
 	
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<ProductGalary> galaries;
 	

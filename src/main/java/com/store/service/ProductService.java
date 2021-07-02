@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.store.mapper.ProductMapper;
 import com.store.model.Product;
-import com.store.model.ProductCategoryModel;
+import com.store.model.ProductModelView;
 import com.store.repository.ProductRepository;
 
 @Service
@@ -30,7 +30,7 @@ public class ProductService {
 		return productRepository.getById(productId);
 	}
 	
-	public void addProduct(ProductCategoryModel model) {
+	public void addProduct(ProductModelView model) {
 		Product  product = productMapper.convertProductViewToEntity(model);
 		productRepository.save(product);
 	}

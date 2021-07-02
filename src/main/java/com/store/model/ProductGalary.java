@@ -23,7 +23,7 @@ public class ProductGalary {
 
 	
 	public ProductGalary(String ImgName,String url) {
-		this.imgName=imgName;
+		this.imgName=ImgName;
 		this.url=url;
 		
 	}

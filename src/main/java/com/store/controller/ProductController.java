@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.store.model.Product;
-import com.store.model.ProductCategoryModel;
+import com.store.model.ProductModelView;
 import com.store.service.ProductService;
 
 @RestController
@@ -26,7 +26,7 @@ public class ProductController {
 	
 	
 	@PostMapping("/add-product")
-	public ResponseEntity<Void> saveProduct(@RequestBody ProductCategoryModel product){
+	public ResponseEntity<Void> saveProduct(@RequestBody ProductModelView product){
 		productService.addProduct(product);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
