@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+
+import com.store.errors.NotFoundException;
+import com.store.model.Product;
 import com.store.model.ProductGalary;
 import com.store.model.ResponseMessage;
 import com.store.service.ProductGalaryService;
+import com.store.service.ProductService;
 
 
 @RestController
@@ -31,11 +35,16 @@ public class ProductGalaryController {
 	private ProductGalaryService storageService;
 	
 	@Autowired
-	private PgalaryRepository ps;
+	private ProductService ps;
+	
+
+	@Autowired
+	private ProductGalaryService galaryService;
+
 	
 	
 	@PostMapping("/upload")
-	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file ,@RequestParam int productId) {
 		String message = "";
 		try {
 			storageService.save(file);
@@ -45,7 +54,19 @@ public class ProductGalaryController {
 					.fromMethodName(ProductGalaryController.class, "getFile", file.getOriginalFilename().toString()).build()
 					.toString();
 	
-		
+			Product product=ps.getProductById(productId);
+
+			if(product==null) {
+				throw new NotFoundException("product with this id not found");
+			}
+			ProductGalary galary=new ProductGalary();
+			galary.setImgName(filename);
+			galary.setProduct(product);
+			galary.setUrl(url);
+			
+			galaryService.saveProductImg(galary);
+			
+			
 			
 			message = "Uploaded the file successfully: " + file.getOriginalFilename();
 			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));

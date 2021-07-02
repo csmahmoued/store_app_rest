@@ -7,15 +7,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.store.model.ProductGalary;
+import com.store.repository.PgalaryRepository;
+
 @Service
 public class ProductGalaryService {
 
+	@Autowired
+	private PgalaryRepository pgalaryRepository;
 	private final Path root = Paths.get("uploads");
 
 	public void init() {
@@ -24,6 +30,11 @@ public class ProductGalaryService {
 		} catch (IOException e) {
 			throw new RuntimeException("Could not initialize folder for upload!");
 		}
+	}
+	
+	
+	public void  saveProductImg(ProductGalary productGalary) {
+		pgalaryRepository.save(productGalary);
 	}
 
 	public void save(MultipartFile file) {

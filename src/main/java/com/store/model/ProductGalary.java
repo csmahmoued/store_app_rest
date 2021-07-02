@@ -25,8 +25,12 @@ public class ProductGalary {
 	public ProductGalary(String ImgName,String url) {
 		this.imgName=imgName;
 		this.url=url;
+		
 	}
 	
+	public ProductGalary() {
+		
+	}
 	
 	public int getProductImgId() {
 		return productImgId;
