@@ -21,6 +21,13 @@ public class ProductGalary {
 	@JoinColumn(name="product_id")
 	private Product product;
 
+	
+	public ProductGalary(String ImgName,String url) {
+		this.imgName=imgName;
+		this.url=url;
+	}
+	
+	
 	public int getProductImgId() {
 		return productImgId;
 	}
