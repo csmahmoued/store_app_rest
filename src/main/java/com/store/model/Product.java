@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Product {
@@ -32,7 +33,7 @@ public class Product {
 	private Category category;
 	
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "product")
 	private List<ProductGalary> galaries;
 	
@@ -95,6 +96,7 @@ public class Product {
 		return galaries;
 	}
 
+	@JsonProperty
 	public void setGalaries(List<ProductGalary> galaries) {
 		this.galaries = galaries;
 	}
