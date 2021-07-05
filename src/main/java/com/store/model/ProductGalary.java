@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ProductGalary {
 
@@ -17,8 +19,9 @@ public class ProductGalary {
 	private String imgName;
 	private String url;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="product_id")
+        @JsonIgnore
 	private Product product;
 
 	
