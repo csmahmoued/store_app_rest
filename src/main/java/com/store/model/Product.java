@@ -32,7 +32,7 @@ public class Product {
 	private Category category;
 	
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<ProductGalary> galaries;
 	
