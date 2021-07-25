@@ -30,9 +30,9 @@ public class ProductService {
 		return productRepository.getById(productId);
 	}
 	
-	public void addProduct(ProductModelView model) {
+	public Product addProduct(ProductModelView model) {
 		Product  product = productMapper.convertProductViewToEntity(model);
-		productRepository.save(product);
+		return productRepository.save(product);
 	}
 	
 	
