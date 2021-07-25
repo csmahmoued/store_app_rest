@@ -26,9 +26,8 @@ public class ProductController {
 	
 	
 	@PostMapping("/add-product")
-	public ResponseEntity<ProductModelView> saveProduct(@RequestBody ProductModelView product){
-		productService.addProduct(product);
-		return new ResponseEntity(product,HttpStatus.CREATED);
+	public Product saveProduct(@RequestBody ProductModelView product){
+		return productService.addProduct(product);
 	}
 	
 	@GetMapping("/all-products")
