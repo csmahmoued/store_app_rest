@@ -28,6 +28,7 @@ public class ProductMapper {
 		Category category=categService.getCatg(model.getCatgId());
 	
 		Product product=new Product();
+		product.setProductId(model.getProductId());
 		product.setProductName(model.getProductName());
 		product.setProductPrice(model.getProductPrice());
 		product.setCategory(category);
